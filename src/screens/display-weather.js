@@ -32,12 +32,12 @@ const DisplayWeather = () => {
                     setCountry(item);
                     setState(null);
                     setCity(null)
-                }} title='Select Country' options={Country.getAllCountries()} /> 
+                }} placeholder='Select Country' options={Country.getAllCountries()} /> 
                 {country ? <DropDown onSelect={(item) =>{
                      setState(item);
                      setCity(null)
-                }} title='Select State' options={State.getStatesOfCountry(country.isoCode)} /> : null}
-                {state ? <DropDown onSelect={(item) => setCity(item)} title='Select City' options={City.getCitiesOfState(country.isoCode, state.isoCode)} /> : null}
+                }} placeholder='Select State' options={State.getStatesOfCountry(country.isoCode)} /> : null}
+                {state ? <DropDown onSelect={(item) => setCity(item)} placeholder='Select City' options={City.getCitiesOfState(country.isoCode, state.isoCode)} /> : null}
                 {weather ? <Weather weather={weather} /> : null}
             </div>
         </div>

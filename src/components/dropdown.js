@@ -1,16 +1,14 @@
-const DropDown = ({ options, title, onSelect }) => {
+import Select from 'react-select'
+import React from 'react'
+
+const DropDown = ({ options, onSelect, placeholder }) => {
+
+    const modOptions = options.map((item) => ({...item, label: item.name}))
+
     return (
-        <div>
-            <div className="btn-group">
-                <button type="button" class="btn btn-danger">{title}</button>
-                <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span className="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul className="dropdown-menu">
-                    {
-                        options.map((item) => <li><div className="dropdown-item" onClick={() => onSelect(item)} >{item.name}</div></li>)
-                    }
-                </ul>
+        <div className='d-flex justify-content-center' >
+            <div className='mx-2 my-2 w-50'>
+                <Select className='' placeholder={placeholder} onChange={(val) => onSelect(val)} options={modOptions} />
             </div>
         </div>
     );
