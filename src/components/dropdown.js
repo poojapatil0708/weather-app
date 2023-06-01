@@ -8,7 +8,7 @@ const DropDown = ({ options, onSelect, placeholder }) => {
     return (
         <div className='d-flex justify-content-center' >
             <div className='mx-2 my-2 w-50'>
-                <Select className='' placeholder={placeholder} onChange={(val) => onSelect(val)} options={modOptions} />
+                <Select placeholder={placeholder} onChange={(val) => onSelect(val)} options={modOptions} />
             </div>
         </div>
     );

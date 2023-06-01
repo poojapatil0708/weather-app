@@ -3,11 +3,9 @@ import ApplicationRoutes from "./router";
 
 const App = () => {
   return (
-    <div className="App">
-        <BrowserRouter>
-            <ApplicationRoutes/>
-        </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <ApplicationRoutes />
+    </BrowserRouter>
   );
 }
 
