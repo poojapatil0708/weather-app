@@ -9,10 +9,10 @@ import Loader from "../components/loader";
 const DisplayWeather = () => {
 
     const [weather, setWeather] = useState(null)
-    const [country, setCountry] = useState(null);
-    const [state, setState] = useState(null);
-    const [city, setCity] = useState(null);
-    const [isLoading, setIsLoading] = useState(false)
+    const [country, setCountry] = useState('');
+    const [state, setState] = useState('');
+    const [city, setCity] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const { coords } = useGeolocated({ positionOptions: { enableHighAccuracy: false }, userDecisionTimeout: 5000 });
 
     useEffect(() => {
@@ -22,11 +22,11 @@ const DisplayWeather = () => {
                 .then(res => {
                     setIsLoading(false)
                     setWeather(res)
-                }) 
+                })
                 .catch(err => {
                     setIsLoading(false)
                     console.log(err)
-                }) 
+                })
         }
     }, [coords])
 
@@ -37,7 +37,7 @@ const DisplayWeather = () => {
                 .then(res => {
                     setIsLoading(false)
                     setWeather(res)
-                }) 
+                })
                 .catch(err => {
                     setIsLoading(false)
                     console.log(err)
@@ -46,18 +46,19 @@ const DisplayWeather = () => {
     }, [city])
 
     return (
-        <div className="d-flex w-100 flex-column">
-            <DropDown onSelect={(item) => {
-                setCountry(item);
-                setState(null);
-                setCity(null)
-            }} placeholder='Select Country' options={Country.getAllCountries()} />
-            {country ? <DropDown onSelect={(item) => {
-                setState(item);
-                setCity(null)
-            }} placeholder='Select State' options={State.getStatesOfCountry(country.isoCode)} /> : null}
-            {state ? <DropDown onSelect={(item) => setCity(item)} placeholder='Select City' options={City.getCitiesOfState(country.isoCode, state.isoCode)} /> : null}
-            {isLoading ? <Loader /> : weather ? <Weather weather={weather} /> : null}
+        <div>
+            <div className="d-flex w-100 flex-row justify-content-center">
+                <DropDown onSelect={(item) => {
+                    setCountry(item);
+                }} placeholder='Select Country' options={Country.getAllCountries()} />
+                <DropDown isDisabled={!country} onSelect={(item) => {
+                    setState(item);
+                }} placeholder='Select State' disabled={!Country} options={State.getStatesOfCountry(country.isoCode)} />
+                <DropDown isDisabled={!state} onSelect={(item) => setCity(item)} placeholder='Select City' options={City.getCitiesOfState(country.isoCode, state.isoCode)} />
+            </div>
+            <div className="d-flex justify-content-center align-items-center" >
+                {isLoading ? <Loader /> : weather ? <Weather weather={weather} /> : null}
+            </div>
         </div>
     );
 }

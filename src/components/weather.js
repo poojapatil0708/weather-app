@@ -1,7 +1,7 @@
 const Weather = ({ weather }) => {
     return (
-        <div className="d-flex flex-column align-items-center my-3" >
-            <div className="d-flex flex-column align-items-center my-3 fw-bold text-light">
+        <div className="d-flex flex-row " >
+            <div className="d-flex flex-column align-items-center mt-5 fw-bold text-light">
                 <img style={{height:'150px', width:'150px'}} src={weather.current.condition.icon} alt="weather"/>
                 <div className="fs-1 ">{weather.location.name}</div>
                 <div className="fs-5">{weather.location.region}</div>

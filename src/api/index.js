@@ -12,4 +12,4 @@ const getWeather = (latitude, longitude) => {
         .catch(err => { throw err })
 }
 
-export default getWeather;
+export default getWeather; 
